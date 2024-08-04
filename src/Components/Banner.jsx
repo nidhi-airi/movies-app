@@ -22,7 +22,7 @@ const Banner = () => {
     if(data){
         return (
             <div className='relative'>
-                <img className='h-[55rem] w-full object-cover' src={BASE_URL+data[idx]?.poster_path} ></img>
+                <img className='w-screen h-screen object-cover' src={BASE_URL+data[idx]?.poster_path} ></img>
                 <div className='absolute bottom-0 text-white bg-black bg-opacity-50 w-full p-4 text-center text-lg'>
                     <p>{data[idx]?.title}</p>
                 </div>
