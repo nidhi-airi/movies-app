@@ -8,10 +8,10 @@ const Banner = () => {
     let url="https://api.themoviedb.org/3/trending/movie/day?api_key=2634e9f079c604567d18059d526b4346"
     
    
-    const fetch_data=()=>{
+    const fetch_data=(url)=>{
         axios.get(url)
         .then((res)=>setData(res.data.results))}
-    
+   
     useEffect(()=>{
         fetch_data(url)
     },[])
