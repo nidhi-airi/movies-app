@@ -1,8 +1,9 @@
 import React from 'react'
 import axios from "axios" 
 import { useState, useEffect } from 'react' 
+import { BASE_URL } from './utilities'
 
-const BASE_URL="https://image.tmdb.org/t/p/original"
+
 const Banner = () => {
     const [data,setData] = useState({})
     let url="https://api.themoviedb.org/3/trending/movie/day?api_key=2634e9f079c604567d18059d526b4346"
