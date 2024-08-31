@@ -39,7 +39,7 @@ function App() {
               
             </>
           }/>
-          <Route path="/watchlist" element={<WatchList movies={watchList} removeFromWatchList={removeFav}/>}/>
+          <Route path="/watchlist" element={<WatchList movies={watchList} removeFromWatchList={removeFav} setWatchList={setWatchList}/>}/>
         </Routes>
       </BrowserRouter>
     </div>
