@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { BASE_URL, GENRES_ID_MAPPING } from './utilities'
 import { MdDelete } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import MovieContext from '../context/MovieContext';
 
-const WatchList = ({movies,removeFromWatchList,setWatchList}) => {
+const WatchList = () => {
   const [genreList,setGenreList] =useState(["All Genres"])
   const [selectedGenre,setSelectedGenre]=useState("All Genres")
   const [searchVal,setSearchVal]=useState("")
-
+  const {watchList:movies,setWatchList,removeFav}=useContext(MovieContext)
   // function to handle genre change 
   const handleGenreChange=(genre)=>{
     setSelectedGenre(genre)
@@ -117,7 +118,7 @@ const WatchList = ({movies,removeFromWatchList,setWatchList}) => {
               </td>
               <td className='text-left'>{movie.popularity}</td>
               <td>{GENRES_ID_MAPPING[movie.genre_ids[0]]}</td>
-              <td className='text-red-600 cursor-pointer' onClick={()=>removeFromWatchList(movie)}><MdDelete size={20}/></td>
+              <td className='text-red-600 cursor-pointer' onClick={()=>removeFav(movie)}><MdDelete size={20}/></td>
             </tr>
           )
            

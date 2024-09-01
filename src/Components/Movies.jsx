@@ -1,15 +1,17 @@
-import React, { useEffect,useState } from 'react';
+import React, { useContext, useEffect,useState } from 'react';
 import axios from 'axios'
 import MovieCard from './MovieCard';
 import Pagination from './Pagination';
+import MovieContext from '../context/MovieContext';
 
 
 
-const Movies = (props) => {
-  const {handleFav,removeFav,watchList}=props
+const Movies = () => {
   const [movies, setMovies] = useState([])
   const [pageNo, setPageNo] = useState(1)
   const [isFav, setIsFav] = useState(false)
+
+  const {watchList}= useContext(MovieContext)
   const handlePrev = () => {
     if (pageNo > 1) {
       setPageNo(pageNo - 1)
@@ -45,7 +47,7 @@ const Movies = (props) => {
         <div className='bg-gray-200 flex flex-wrap justify-evenly gap-10 mt-2 p-10'>
           {movies.map((movie, idx) => {
             return (
-              <MovieCard key={idx} movie={movie} movie_id={movie.id} isFav={watchList.some((elem)=>elem.id===movie.id)} image_path={movie.poster_path} title={movie.title} handleAddFav={handleFav} handleRemoveFav={removeFav} />
+              <MovieCard key={idx} movie={movie} movie_id={movie.id} isFav={watchList.some((elem)=>elem.id===movie.id)} image_path={movie.poster_path} title={movie.title}  />
 
             )
           })}
