@@ -3,26 +3,16 @@ import axios from 'axios'
 import MovieCard from './MovieCard';
 import Pagination from './Pagination';
 import MovieContext from '../context/MovieContext';
+import PaginationContext from '../context/PaginationContext';
 
 
 
 const Movies = () => {
   const [movies, setMovies] = useState([])
-  const [pageNo, setPageNo] = useState(1)
   const [isFav, setIsFav] = useState(false)
-
   const {watchList}= useContext(MovieContext)
-  const handlePrev = () => {
-    if (pageNo > 1) {
-      setPageNo(pageNo - 1)
-    }
-
-  }
-
-  const handleNext = () => {
-    setPageNo(pageNo + 1)
-  }
-
+  const {pageNo} =useContext(PaginationContext)
+  console.log(pageNo,".......")
 
   let url = `https://api.themoviedb.org/3/trending/movie/day?api_key=2634e9f079c604567d18059d526b4346&page=${pageNo}`
 
@@ -52,7 +42,7 @@ const Movies = () => {
             )
           })}
         </div>
-        <Pagination pageNo={pageNo} handleNext={handleNext} handlePrev={handlePrev} />
+        <Pagination />
       </>
 
     )

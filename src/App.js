@@ -7,9 +7,11 @@ import Banner from "./Components/Banner";
 import WatchList from "./Components/WatchList";
 import Movies from "./Components/Movies";
 import MovieContext from "./context/MovieContext";
+import PaginationContext from "./context/PaginationContext";
 
 function App() {
   const [isFav, setIsFav] = useState(false);
+  const [pageNo, setPageNo] = useState(1)
   const [watchList, setWatchList] = useState(
     JSON.parse(localStorage.getItem("fav")) || []
   );
@@ -24,6 +26,16 @@ function App() {
     });
     setWatchList(new_list);
   };
+
+  const handlePrev = () => {
+    if (pageNo > 1) {
+      setPageNo(pageNo - 1)
+    }
+
+  }
+  const handleNext = () => {
+    setPageNo(pageNo + 1)
+  }
 
   useEffect(() => {
     localStorage.setItem("fav", JSON.stringify(watchList));
@@ -42,7 +54,10 @@ function App() {
               element={
                 <>
                   <Banner />
-                  <Movies />
+                    <PaginationContext.Provider value={{handlePrev,handleNext,pageNo}}>
+                      <Movies />
+                    </PaginationContext.Provider>
+                  
                 </>
               }
             />
